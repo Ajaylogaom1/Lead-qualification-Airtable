@@ -30,7 +30,7 @@ Sales teams
 
 Automation freelancers
 
-#🧩 High-Level Workflow Architecture
+# 🧩 High-Level Workflow Architecture
 Form Submission
    ↓
 Duplicate Check (Airtable)
@@ -43,7 +43,7 @@ Human Decision (Approve / Reject)
    ↓
 Database Update + Notifications
 
-#🛠️ Tools & Services Used
+# 🛠️ Tools & Services Used
 
 n8n – Workflow automation engine
 
@@ -55,8 +55,8 @@ Telegram Bot API – Human approval interface
 
 Gmail – Email notifications
 
-#📂 Workflow Breakdown (Node-by-Node)
-#1️⃣ Lead Intake & Validation
+# 📂 Workflow Breakdown (Node-by-Node)
+# 1️⃣ Lead Intake & Validation
 🔹 On Form Submission
 
 Triggered when a user submits a form
@@ -79,7 +79,7 @@ True → No operation (prevents duplicate entry)
 
 False → Continues workflow for new lead creation
 
-#2️⃣ AI-Based Lead Qualification
+# 2️⃣ AI-Based Lead Qualification
 🔹 Create Record (Airtable)
 
 Stores the new lead with initial status
@@ -106,7 +106,7 @@ Extracts decision, confidence, and reasoning
 
 Saves AI decision results into Airtable
 
-#3️⃣ Decision Routing
+# 3️⃣ Decision Routing
 🔹 Switch (Rules Mode)
 
 Routes based on AI decision:
@@ -117,7 +117,7 @@ Reject
 
 Follow-up Needed
 
-#🔹 Telegram – Approval Message
+# 🔹 Telegram – Approval Message
 
 Sends approval request to admin with inline buttons
 
@@ -127,7 +127,7 @@ Includes lead details and AI confidence
 
 Sends rejection or follow-up notification
 
-#4️⃣ Telegram Human Approval Flow
+# 4️⃣ Telegram Human Approval Flow
 🔹 Telegram Trigger (Callback Query)
 
 Listens for button clicks:
@@ -148,7 +148,7 @@ Extracts record ID and decision
 
 Fetches the corresponding lead record
 
-#5️⃣ Final AI + Notification Layer
+# 5️⃣ Final AI + Notification Layer
 🔹 Message a Model
 
 Generates a human-like response message
@@ -177,7 +177,7 @@ Closed
 
 Graceful exit for completed or invalid paths
 
-#🗂️ Airtable Schema (Recommended)
+# 🗂️ Airtable Schema (Recommended)
 Field Name	Type
 Full Name	Text
 Email	Email
@@ -190,7 +190,7 @@ AI Confidence	Number
 Approval Status	Single Select
 Telegram Action	Text
 Created Time	Date
-#🔐 Environment Variables Required
+# 🔐 Environment Variables Required
 AIRTABLE_API_KEY
 AIRTABLE_BASE_ID
 AIRTABLE_TABLE_NAME
@@ -198,7 +198,7 @@ GOOGLE_GEMINI_API_KEY
 TELEGRAM_BOT_TOKEN
 GMAIL_CREDENTIALS
 
-#🚀 Key Features
+# 🚀 Key Features
 
 ✅ Duplicate lead prevention
 
@@ -214,7 +214,7 @@ GMAIL_CREDENTIALS
 
 🔁 Fully scalable & reusable
 
-#💡 Use Cases
+# 💡 Use Cases
 
 Lead qualification for agencies
 
