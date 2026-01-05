@@ -1,0 +1,1287 @@
+{
+  "name": "airtable lead qualification",
+  "nodes": [
+    {
+      "parameters": {
+        "formTitle": "New Lead",
+        "formFields": {
+          "values": [
+            {
+              "fieldName": "Full Name",
+              "fieldLabel": "Full Name",
+              "requiredField": true
+            },
+            {
+              "fieldName": "Email",
+              "fieldLabel": "Email",
+              "fieldType": "email",
+              "requiredField": true
+            },
+            {
+              "fieldName": "Requirement",
+              "fieldLabel": "Requirement",
+              "requiredField": true
+            },
+            {
+              "fieldName": "Budget",
+              "fieldLabel": "Budget",
+              "fieldType": "number",
+              "requiredField": true
+            },
+            {
+              "fieldName": "Timeline",
+              "fieldLabel": "Timeline",
+              "requiredField": true
+            }
+          ]
+        },
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.formTrigger",
+      "typeVersion": 2.4,
+      "position": [
+        -544,
+        -160
+      ],
+      "id": "7a94355f-66f9-4bc2-be29-51f9fa05ff71",
+      "name": "On form submission",
+      "webhookId": "82c3c9c6-5838-489f-8050-e208ca170141"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "31588e52-2393-46ab-a882-11033b990773",
+              "name": "Full Name",
+              "value": "={{ $json['Full Name'] }}",
+              "type": "string"
+            },
+            {
+              "id": "6a1398fe-2868-40e8-89de-0dc223b3cef0",
+              "name": "Email",
+              "value": "={{ $json.Email }}",
+              "type": "string"
+            },
+            {
+              "id": "6ef14bcc-2236-4da4-a861-e392490fbab0",
+              "name": "Requirement",
+              "value": "={{ $json.Requirement }}",
+              "type": "string"
+            },
+            {
+              "id": "56ced906-e5ac-4169-a397-3e3800de95ff",
+              "name": "Budget",
+              "value": "={{ $json.Budget }}",
+              "type": "number"
+            },
+            {
+              "id": "4fb19079-3285-4810-aef0-033cc9ed8c0a",
+              "name": "Timeline",
+              "value": "={{ $json.Timeline }}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -320,
+        -160
+      ],
+      "id": "20624172-7878-412a-9f19-cf7603820145",
+      "name": "Edit Fields"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appvuLprwVLXRn9Hn",
+          "mode": "list",
+          "cachedResultName": "lead qualification",
+          "cachedResultUrl": "https://airtable.com/appvuLprwVLXRn9Hn"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblU0AYkGe4r36KTM",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/appvuLprwVLXRn9Hn/tblU0AYkGe4r36KTM"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Budget": "={{ $('Edit Fields').item.json.Budget }}",
+            "Full Name": "={{ $('Edit Fields').item.json['Full Name'] }}",
+            "Email": "={{ $('Edit Fields').item.json.Email }}",
+            "Requirement": "={{ $('Edit Fields').item.json.Requirement }}",
+            "Timeline": "={{ $('Edit Fields').item.json.Timeline }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Full Name",
+              "displayName": "Full Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Requirement",
+              "displayName": "Requirement",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Budget",
+              "displayName": "Budget",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Timeline",
+              "displayName": "Timeline",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -560,
+        192
+      ],
+      "id": "8dc5bf88-870e-4d26-b3da-0aaa33158ca8",
+      "name": "Create a record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "MebgZUgnr3aYgvjL",
+          "name": "lead qualification"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "operation": "search",
+        "base": {
+          "__rl": true,
+          "value": "appvuLprwVLXRn9Hn",
+          "mode": "list",
+          "cachedResultName": "lead qualification",
+          "cachedResultUrl": "https://airtable.com/appvuLprwVLXRn9Hn"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblU0AYkGe4r36KTM",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/appvuLprwVLXRn9Hn/tblU0AYkGe4r36KTM"
+        },
+        "filterByFormula": "={Email} = \"{{ $json.Email }}\"",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        -160,
+        -160
+      ],
+      "id": "de6eed82-af8d-47a4-9557-4327c7e18e2d",
+      "name": "Search records",
+      "alwaysOutputData": true,
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "MebgZUgnr3aYgvjL",
+          "name": "lead qualification"
+        }
+      }
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        640,
+        -144
+      ],
+      "id": "076e7776-ed89-410f-bb87-3d4bf5e6f186",
+      "name": "No Operation, do nothing"
+    },
+    {
+      "parameters": {
+        "promptType": "define",
+        "text": "=Lead data from Airtable:\n\nName: {{$json.fields[\"Full Name\"]}}\nEmail: {{$json.fields.Email}}\nRequirement: {{$json.fields.Requirement}}\nBudget: {{$json.fields.Budget}}\nTimeline: {{$json.fields.Timeline}}\n\nTasks:\n1. Assign lead_score using the budget rules\n2. Assign lead_type (Hot / Warm / Cold)\n3. Decide Call Now or Call Later\n4. Create a short follow-up message (1–2 lines)\n5. Create a short email follow-up ONLY if lead_type is hot\n\nReturn JSON strictly in this format:\n{\n  \"Lead Email\":{{ $json.fields.Email }},\n  \"Requirement\": {{$json.fields.Requirement}},\n  \"lead_score\": number,\n  \"lead_type\": \"Hot | Warm | Cold\",\n  \"call_decision\": \"Call Now | Call Later\",\n  \"followup_message\": \"string\",\n  \"email_followup\": \"string\"\n}\n",
+        "hasOutputParser": true,
+        "options": {
+          "systemMessage": "=You are a lead qualification engine.\n\nYou MUST strictly follow these rules:\n\nBUDGET RULES (MANDATORY):\n- If budget > 10000:\n  - lead_type = \"Hot\"\n  - lead_score MUST be between 80 and 100\n  - call_decision = \"Call Now\"\n\n- If budget is between 5000 and 10000 (inclusive):\n  - lead_type = \"Warm\"\n  - lead_score MUST be between 50 and 79\n  - call_decision = \"call_later\"\n\n- If budget < 5000:\n  - lead_type = \"Cold\"\n  - lead_score MUST be between 1 and 49\n  - call_decision = \"Call Later\"\n\nIMPORTANT:\n- Do NOT break these rules.\n- Do NOT change lead types.\n- Output MUST be valid JSON.\n- Do NOT add explanations or extra text.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.agent",
+      "typeVersion": 3.1,
+      "position": [
+        -320,
+        128
+      ],
+      "id": "f04223fc-9d28-4812-aeee-1e9c03155cc1",
+      "name": "AI"
+    },
+    {
+      "parameters": {
+        "jsonSchemaExample": "{\n  \"lead_email\":\"email\",\n  \"lead_Requirement\":\"string\",\n  \"lead_score\": \"number\",\n  \"lead_type\": \"string\",\n  \"call_decision\": \"string\",\n  \"followup_message\": \"string\",\n  \"email_followup\": \"string\"\n}\n"
+      },
+      "type": "@n8n/n8n-nodes-langchain.outputParserStructured",
+      "typeVersion": 1.3,
+      "position": [
+        -160,
+        288
+      ],
+      "id": "dc9f6d8a-ef67-489d-afea-65409658bd80",
+      "name": "output"
+    },
+    {
+      "parameters": {
+        "operation": "create",
+        "base": {
+          "__rl": true,
+          "value": "appvuLprwVLXRn9Hn",
+          "mode": "list",
+          "cachedResultName": "lead qualification",
+          "cachedResultUrl": "https://airtable.com/appvuLprwVLXRn9Hn"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblOYs1mT2zgmVHUv",
+          "mode": "list",
+          "cachedResultName": "Table 2",
+          "cachedResultUrl": "https://airtable.com/appvuLprwVLXRn9Hn/tblOYs1mT2zgmVHUv"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "Lead Score": "={{ $json.output.lead_score }}",
+            "Lead Email": "={{ $json.output.lead_email }}",
+            "Lead Requirement": "={{ $json.output.lead_Requirement }}",
+            "Lead Type": "={{ $json.output.lead_type }}",
+            "Call Decision": "={{ $json.output.call_decision }}",
+            "followup message": "={{ $json.output.followup_message }}"
+          },
+          "matchingColumns": [],
+          "schema": [
+            {
+              "id": "Lead Email",
+              "displayName": "Lead Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Lead Requirement",
+              "displayName": "Lead Requirement",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Lead Score",
+              "displayName": "Lead Score",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Lead Type",
+              "displayName": "Lead Type",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Hot",
+                  "value": "Hot"
+                },
+                {
+                  "name": "Cold",
+                  "value": "Cold"
+                },
+                {
+                  "name": "Warm",
+                  "value": "Warm"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Call Decision",
+              "displayName": "Call Decision",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "Call Now",
+                  "value": "Call Now"
+                },
+                {
+                  "name": "Call Later",
+                  "value": "Call Later"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "followup message",
+              "displayName": "followup message",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        0,
+        128
+      ],
+      "id": "be422b2f-ac94-4f39-a996-16dd85e21ce9",
+      "name": "Create a record1",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "MebgZUgnr3aYgvjL",
+          "name": "lead qualification"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "52f80843-c15b-4ede-9428-6d1c407fea0d",
+              "leftValue": "={{ $json.id }}",
+              "rightValue": "0",
+              "operator": {
+                "type": "string",
+                "operation": "empty",
+                "singleValue": true
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        32,
+        -160
+      ],
+      "id": "e80e1c94-6cb6-471c-a6a6-89e75835678e",
+      "name": "If"
+    },
+    {
+      "parameters": {
+        "chatId": "2046258630",
+        "text": "=CALL NOW LEAD – CONFIRM FOLLOW-UP \n👤 Email: {{$json.fields[\"Lead Email\"]}} \n📋 Requirement: {{$json.fields[\"Lead Requirement\"]}} \n💰 Budget:{{ $('Create a record').item.json.fields.Budget }}\n⭐ Lead Type: {{$json.fields[\"Lead Type\"]}}  \n\nReply using the buttons below 👇\n",
+        "replyMarkup": "inlineKeyboard",
+        "inlineKeyboard": {
+          "rows": [
+            {
+              "row": {
+                "buttons": [
+                  {
+                    "text": "=call",
+                    "additionalFields": {
+                      "callback_data": "=call_{{ $('Create a record').item.json.id }}"
+                    }
+                  },
+                  {
+                    "text": "leave",
+                    "additionalFields": {
+                      "callback_data": "leave"
+                    }
+                  }
+                ]
+              }
+            }
+          ]
+        },
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        640,
+        32
+      ],
+      "id": "4a8aec84-0703-447d-8bbf-a2b7d14c139d",
+      "name": "Approval",
+      "webhookId": "d1d3421e-db20-40b7-a228-25730d4d4964",
+      "credentials": {
+        "telegramApi": {
+          "id": "NdGmvLXUPjkB9ex8",
+          "name": "lead qualification"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "2046258630",
+        "text": "You decided not to proceed with this lead right now.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        640,
+        224
+      ],
+      "id": "9b759608-b361-4bdc-bdd5-98b2ada1faa3",
+      "name": "Message",
+      "webhookId": "bb3eaacb-3adc-4263-bad6-e25b3b14f51d",
+      "credentials": {
+        "telegramApi": {
+          "id": "NdGmvLXUPjkB9ex8",
+          "name": "lead qualification"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "updates": [
+          "callback_query"
+        ],
+        "additionalFields": {}
+      },
+      "type": "n8n-nodes-base.telegramTrigger",
+      "typeVersion": 1.2,
+      "position": [
+        -560,
+        528
+      ],
+      "id": "c13b07e2-878e-4f34-a39e-21ff4b000e4f",
+      "name": "Telegram Trigger",
+      "webhookId": "d5190867-b9a9-47b3-9305-5a15056c5e32",
+      "credentials": {
+        "telegramApi": {
+          "id": "NdGmvLXUPjkB9ex8",
+          "name": "lead qualification"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "chatId": "2046258630",
+        "text": "You decided not to proceed with this lead right now.",
+        "additionalFields": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.telegram",
+      "typeVersion": 1.2,
+      "position": [
+        -128,
+        704
+      ],
+      "id": "5edd0bbe-4f79-4dfd-9d1e-08bed56f17c4",
+      "name": "Send a text message",
+      "webhookId": "46ec131e-96fe-4c83-ae68-9bedd0b468b5",
+      "credentials": {
+        "telegramApi": {
+          "id": "NdGmvLXUPjkB9ex8",
+          "name": "lead qualification"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{$json.callback_query.data}}",
+                    "rightValue": "={{ $json.callback_query.message.reply_markup.inline_keyboard[0][0].callback_data }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "0f32bc3a-5655-48b2-87ea-d4814fe6ad2a"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "62f6127d-91c7-4ff1-aa82-321a51ce94bf",
+                    "leftValue": "={{$json.callback_query.data}}",
+                    "rightValue": "={{ $json.callback_query.message.reply_markup.inline_keyboard[0][1].callback_data }}",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        -352,
+        528
+      ],
+      "id": "511e1f3c-99b6-4cf4-858c-a1efdacd638e",
+      "name": "Switch"
+    },
+    {
+      "parameters": {
+        "rules": {
+          "values": [
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "leftValue": "={{ $json.fields['Lead Type'] }}",
+                    "rightValue": "Hot",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    },
+                    "id": "14793637-de59-40ee-bcc6-c01cae9fdc28"
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "150e5c85-ac69-46cb-81d3-d75c4459a4ba",
+                    "leftValue": "={{ $json.fields['Lead Type'] }}",
+                    "rightValue": "Warm",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            },
+            {
+              "conditions": {
+                "options": {
+                  "caseSensitive": true,
+                  "leftValue": "",
+                  "typeValidation": "strict",
+                  "version": 3
+                },
+                "conditions": [
+                  {
+                    "id": "05280a92-2081-409c-9cf9-520442837041",
+                    "leftValue": "={{ $json.fields['Lead Type'] }}",
+                    "rightValue": "Cold",
+                    "operator": {
+                      "type": "string",
+                      "operation": "equals"
+                    }
+                  }
+                ],
+                "combinator": "and"
+              }
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.switch",
+      "typeVersion": 3.4,
+      "position": [
+        176,
+        112
+      ],
+      "id": "b21d5504-b32c-4022-99f5-e1eca027093d",
+      "name": "Switch1"
+    },
+    {
+      "parameters": {
+        "assignments": {
+          "assignments": [
+            {
+              "id": "a66520d2-75d1-4296-9db8-d32db4c9291a",
+              "name": "record_id",
+              "value": "={{$json.callback_query.data.split('_')[1]}}",
+              "type": "string"
+            }
+          ]
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.set",
+      "typeVersion": 3.4,
+      "position": [
+        -112,
+        480
+      ],
+      "id": "f54bb06e-e73f-4e32-9b62-d4b010cb9ef3",
+      "name": "Edit Fields1"
+    },
+    {
+      "parameters": {
+        "base": {
+          "__rl": true,
+          "value": "appvuLprwVLXRn9Hn",
+          "mode": "list",
+          "cachedResultName": "lead qualification",
+          "cachedResultUrl": "https://airtable.com/appvuLprwVLXRn9Hn"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblOYs1mT2zgmVHUv",
+          "mode": "list",
+          "cachedResultName": "Table 2",
+          "cachedResultUrl": "https://airtable.com/appvuLprwVLXRn9Hn/tblOYs1mT2zgmVHUv"
+        },
+        "id": "={{ $json.record_id }}",
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        80,
+        480
+      ],
+      "id": "0f669a1d-03e5-424d-970f-5ad2e0dfdc9b",
+      "name": "Get a record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "MebgZUgnr3aYgvjL",
+          "name": "lead qualification"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "options": {}
+      },
+      "type": "@n8n/n8n-nodes-langchain.lmChatGoogleGemini",
+      "typeVersion": 1,
+      "position": [
+        -352,
+        288
+      ],
+      "id": "55f8345e-0c5d-4a4b-802e-c69165368f53",
+      "name": "Google Gemini Chat Model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "yEuCOyulxxoURWnO",
+          "name": "account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "modelId": {
+          "__rl": true,
+          "value": "models/gemini-2.5-flash",
+          "mode": "list",
+          "cachedResultName": "models/gemini-2.5-flash"
+        },
+        "messages": {
+          "values": [
+            {
+              "content": "=Lead details from Airtable Record:\n\nFull Name:{{ $json['Full Name'] }}\nEmail:{{ $json.Email }}\nRequirement:{{ $json.Requirement }}\nBudget:{{ $json.Budget }}\nTimeline:{{ $json['Full Name'] }}\n\n\nTask:\nWrite a follow-up email requesting a meeting or call to discuss the requirement further.\n"
+            }
+          ]
+        },
+        "builtInTools": {},
+        "options": {
+          "systemMessage": "=You are a professional sales follow-up email generator.\n\nYour task is to write concise, polite, and action-oriented follow-up emails to leads based on CRM data.\n\nRULES (MANDATORY):\n- Write a professional but friendly tone.\n- Personalize the email using the lead’s name, requirement, budget, and urgency.\n- If Budget >= 10000, treat the lead as HIGH PRIORITY.\n- Encourage scheduling a call or meeting.\n- Keep the email short (max 6–8 lines).\n- Do NOT include markdown.\n- Do NOT include explanations.\n- Do NOT add emojis.\n- Output ONLY the email body as plain text.\n- Do NOT add subject line unless explicitly asked.\n\nYou must strictly follow these rules.\n"
+        }
+      },
+      "type": "@n8n/n8n-nodes-langchain.googleGemini",
+      "typeVersion": 1.1,
+      "position": [
+        256,
+        480
+      ],
+      "id": "9b8634e7-e722-43cb-aba4-5bb887faf91a",
+      "name": "Message a model",
+      "credentials": {
+        "googlePalmApi": {
+          "id": "yEuCOyulxxoURWnO",
+          "name": "account 2"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "sendTo": "={{ $('Get a record').item.json.Email }}",
+        "subject": "Let’s schedule a short call",
+        "emailType": "text",
+        "message": "={{ $json.content.parts[0].text }}",
+        "options": {
+          "appendAttribution": false
+        }
+      },
+      "type": "n8n-nodes-base.gmail",
+      "typeVersion": 2.2,
+      "position": [
+        640,
+        480
+      ],
+      "id": "34b13aa9-f8e4-413a-9638-38ea22406014",
+      "name": "Send a message",
+      "webhookId": "849a9eff-7e77-4cd9-a32e-c96b15e2b0a5",
+      "credentials": {
+        "gmailOAuth2": {
+          "id": "5UL3g9tdGbVdEc6Y",
+          "name": "Gmail account"
+        }
+      }
+    },
+    {
+      "parameters": {
+        "conditions": {
+          "options": {
+            "caseSensitive": true,
+            "leftValue": "",
+            "typeValidation": "strict",
+            "version": 3
+          },
+          "conditions": [
+            {
+              "id": "0f35c37e-1848-42f2-9681-b76dc867b842",
+              "leftValue": "={{ $json.labelIds[1] }}",
+              "rightValue": "SENT",
+              "operator": {
+                "type": "string",
+                "operation": "equals"
+              }
+            }
+          ],
+          "combinator": "and"
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.if",
+      "typeVersion": 2.3,
+      "position": [
+        368,
+        704
+      ],
+      "id": "bbd01e64-3626-4073-9c3f-08cb0aa2c38a",
+      "name": "If1"
+    },
+    {
+      "parameters": {},
+      "type": "n8n-nodes-base.noOp",
+      "typeVersion": 1,
+      "position": [
+        640,
+        880
+      ],
+      "id": "a8311be5-6b9d-4cd0-bff9-f4e739c3d891",
+      "name": "No Operation, do nothing1"
+    },
+    {
+      "parameters": {
+        "operation": "update",
+        "base": {
+          "__rl": true,
+          "value": "appvuLprwVLXRn9Hn",
+          "mode": "list",
+          "cachedResultName": "lead qualification",
+          "cachedResultUrl": "https://airtable.com/appvuLprwVLXRn9Hn"
+        },
+        "table": {
+          "__rl": true,
+          "value": "tblU0AYkGe4r36KTM",
+          "mode": "list",
+          "cachedResultName": "Table 1",
+          "cachedResultUrl": "https://airtable.com/appvuLprwVLXRn9Hn/tblU0AYkGe4r36KTM"
+        },
+        "columns": {
+          "mappingMode": "defineBelow",
+          "value": {
+            "id": "={{ $('Get a record').item.json.id }}",
+            "Full Name": "={{ $('Get a record').item.json['Full Name'] }}",
+            "Email": "={{ $('Get a record').item.json.Email }}",
+            "Requirement": "={{ $('Get a record').item.json.Requirement }}",
+            "Budget": "={{ $('Get a record').item.json.Budget }}",
+            "Timeline": "={{ $('Get a record').item.json.Timeline }}",
+            "Status": "contacted"
+          },
+          "matchingColumns": [
+            "id"
+          ],
+          "schema": [
+            {
+              "id": "id",
+              "displayName": "id",
+              "required": false,
+              "defaultMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": false
+            },
+            {
+              "id": "Full Name",
+              "displayName": "Full Name",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Email",
+              "displayName": "Email",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Requirement",
+              "displayName": "Requirement",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Budget",
+              "displayName": "Budget",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "number",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Timeline",
+              "displayName": "Timeline",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": false,
+              "removed": false
+            },
+            {
+              "id": "Created Time",
+              "displayName": "Created Time",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "string",
+              "readOnly": true,
+              "removed": true
+            },
+            {
+              "id": "Status",
+              "displayName": "Status",
+              "required": false,
+              "defaultMatch": false,
+              "canBeUsedToMatch": true,
+              "display": true,
+              "type": "options",
+              "options": [
+                {
+                  "name": "contacted",
+                  "value": "contacted"
+                }
+              ],
+              "readOnly": false,
+              "removed": false
+            }
+          ],
+          "attemptToConvertTypes": false,
+          "convertFieldsToString": false
+        },
+        "options": {}
+      },
+      "type": "n8n-nodes-base.airtable",
+      "typeVersion": 2.1,
+      "position": [
+        640,
+        704
+      ],
+      "id": "10d30797-959b-415a-8956-c58953302617",
+      "name": "Update record",
+      "credentials": {
+        "airtableTokenApi": {
+          "id": "MebgZUgnr3aYgvjL",
+          "name": "lead qualification"
+        }
+      }
+    }
+  ],
+  "pinData": {},
+  "connections": {
+    "On form submission": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields": {
+      "main": [
+        [
+          {
+            "node": "Search records",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Search records": {
+      "main": [
+        [
+          {
+            "node": "If",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "output": {
+      "ai_outputParser": [
+        [
+          {
+            "node": "AI",
+            "type": "ai_outputParser",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "AI": {
+      "main": [
+        [
+          {
+            "node": "Create a record1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a record1": {
+      "main": [
+        [
+          {
+            "node": "Switch1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If": {
+      "main": [
+        [
+          {
+            "node": "Create a record",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Approval": {
+      "main": [
+        []
+      ]
+    },
+    "Telegram Trigger": {
+      "main": [
+        [
+          {
+            "node": "Switch",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch": {
+      "main": [
+        [
+          {
+            "node": "Edit Fields1",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Send a text message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Switch1": {
+      "main": [
+        [
+          {
+            "node": "Approval",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Approval",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "Message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Create a record": {
+      "main": [
+        [
+          {
+            "node": "AI",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Edit Fields1": {
+      "main": [
+        [
+          {
+            "node": "Get a record",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Google Gemini Chat Model": {
+      "ai_languageModel": [
+        [
+          {
+            "node": "AI",
+            "type": "ai_languageModel",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Get a record": {
+      "main": [
+        [
+          {
+            "node": "Message a model",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Message a model": {
+      "main": [
+        [
+          {
+            "node": "Send a message",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "Send a message": {
+      "main": [
+        [
+          {
+            "node": "If1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    },
+    "If1": {
+      "main": [
+        [
+          {
+            "node": "Update record",
+            "type": "main",
+            "index": 0
+          }
+        ],
+        [
+          {
+            "node": "No Operation, do nothing1",
+            "type": "main",
+            "index": 0
+          }
+        ]
+      ]
+    }
+  },
+  "active": false,
+  "settings": {
+    "executionOrder": "v1",
+    "availableInMCP": false
+  },
+  "versionId": "2688da49-a9cc-4839-b091-9baa7966516c",
+  "meta": {
+    "templateCredsSetupCompleted": true,
+    "instanceId": "f1ffabf898e19328892f613421978195736b3fb85fb1d79d192cb6df23e4fe24"
+  },
+  "id": "eETG8mepUeF2kFi0",
+  "tags": []
+}
